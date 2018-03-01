@@ -1,6 +1,7 @@
 package com.google.hashcode.hashimpl;
 
 public class Ride {
+    private final int index;
     private final int startX;
     private final int startY;
     private final int endX;
@@ -9,7 +10,8 @@ public class Ride {
     private final int latestFinish;
     private final int getStartToEndDistance;
 
-    public Ride(int startX, int startY, int endX, int endY, int earliestStartTime, int latestFinish){
+    public Ride(int index, int startX, int startY, int endX, int endY, int earliestStartTime, int latestFinish){
+        this.index = index;
         this.startX = startX;
         this.startY = startY;
         this.endX = endX;
@@ -52,5 +54,9 @@ public class Ride {
     public String toString(){
         return String.format("ride from [%d, %d] to [%d, %d], earliest start %d, latest finish %d",
                 startX, startY, endX, endY, earliestStartTime, latestFinish);
+    }
+
+    public int getIndex() {
+        return index;
     }
 }
