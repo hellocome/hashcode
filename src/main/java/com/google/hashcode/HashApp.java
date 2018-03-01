@@ -1,4 +1,6 @@
-package com.zhaohaijie.hashcode;
+package com.google.hashcode;
+
+import com.google.hashcode.hashimpl.DataLoader;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -33,11 +35,10 @@ public class HashApp {
         }
     }
 
-
     public static void main(String[] args) {
         try {
-
-
+            DataLoader loader = new DataLoader(System.getProperty("com.google.hashcode.file"));
+            System.out.print(loader.toString());
         } catch (Exception ex) {
             ex.printStackTrace();
         }

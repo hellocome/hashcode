@@ -1,1 +1,1 @@
-java -cp ".:*:./Server/lib/*" com.google.hashcode.HashApp
+java -cp com.google.hashcode.HashApp -Dcom.google.hashcode.file=""
