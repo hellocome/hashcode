@@ -50,6 +50,7 @@ public class TakeMeToDestinationGreedy {
 
         vehiclesRideMap.forEach( (v, rides) ->{
             final StringBuilder oneLine = new StringBuilder();
+            oneLine.append(rides.size() + " ");
             rides.forEach(ride -> oneLine.append(ride + " "));
 
             allLines.append(oneLine.toString().trim() + "\n");
