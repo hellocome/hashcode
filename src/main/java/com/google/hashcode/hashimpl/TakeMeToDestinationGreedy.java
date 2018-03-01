@@ -1,6 +1,10 @@
 package com.google.hashcode.hashimpl;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -69,5 +73,10 @@ public class TakeMeToDestinationGreedy {
         });
 
         return allLines.toString();
+    }
+
+    public void saveToFile() throws IOException {
+        Files.write(Paths.get("result.txt"), Arrays.asList(buildResult()));
+
     }
 }
