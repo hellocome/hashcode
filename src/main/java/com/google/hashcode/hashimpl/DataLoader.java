@@ -3,6 +3,7 @@ package com.google.hashcode.hashimpl;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -34,6 +35,8 @@ public class DataLoader {
                 final List<Integer> riderData = Stream.of(line.split("\\s+")).map(Integer::valueOf).collect(Collectors.toList());
                 rideList.add(new Ride(index++, riderData.get(0), riderData.get(1), riderData.get(2), riderData.get(3), riderData.get(4), riderData.get(5)));
             }
+
+            Collections.shuffle(rideList);
 
             for (int i = 0; i < vehicleNumber; i++) {
                 vehicles.add(new Vehicle(0,0));

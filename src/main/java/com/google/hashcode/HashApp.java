@@ -9,18 +9,19 @@ public class HashApp {
 
     public static void main(String[] args) {
         try {
-            final String result = "E:\\SourceControl\\MyGitHub\\hashcode\\result\\c_no_hurry_1.res";
+            //final String result = "E:\\SourceControl\\MyGitHub\\hashcode\\result\\c";
+            //final String result = "E:\\SourceControl\\MyGitHub\\hashcode\\result\\d";
+            final String result = "E:\\SourceControl\\MyGitHub\\hashcode\\result\\e";
             //System.setProperty(HASHCODE_FILE, "E:\\SourceControl\\MyGitHub\\hashcode\\DataSet\\b_should_be_easy.in");
-            System.setProperty(HASHCODE_FILE, "E:\\SourceControl\\MyGitHub\\hashcode\\DataSet\\c_no_hurry.in");
+            //System.setProperty(HASHCODE_FILE, "E:\\SourceControl\\MyGitHub\\hashcode\\DataSet\\c_no_hurry.in");
             //System.setProperty(HASHCODE_FILE, "E:\\SourceControl\\MyGitHub\\hashcode\\DataSet\\d_metropolis.in");
-            //System.setProperty(HASHCODE_FILE, "E:\\SourceControl\\MyGitHub\\hashcode\\DataSet\\e_high_bonus.in");
+            System.setProperty(HASHCODE_FILE, "E:\\SourceControl\\MyGitHub\\hashcode\\DataSet\\a_example.in");
 
-            DataLoader loader = new DataLoader(System.getProperty(HASHCODE_FILE));
-
-            //System.out.print(loader);
-            TakeMeToDestinationGreedy greedy = new TakeMeToDestinationGreedy(loader);
-
-            TakeMeToDestinationHelper.resultWritter(greedy.start(), result);
+            for(int i=0; i<100; i++) {
+                DataLoader loader = new DataLoader(System.getProperty(HASHCODE_FILE));
+                TakeMeToDestinationGreedy greedy = new TakeMeToDestinationGreedy(loader);
+                TakeMeToDestinationHelper.resultWritter(greedy.start(), result + "_" + greedy.getNotAccurateScore() + ".txt");
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }

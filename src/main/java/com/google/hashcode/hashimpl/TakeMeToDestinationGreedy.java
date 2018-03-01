@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class TakeMeToDestinationGreedy {
     private final ConcurrentLinkedQueue<Ride> rideList;
-    private final Map<Vehicle, ArrayList<Integer>> vehiclesRideMap;
+    private final Map<Vehicle, ArrayList<Ride>> vehiclesRideMap;
     private final int simulationStep;
 
     public TakeMeToDestinationGreedy(DataLoader data){
@@ -32,7 +32,7 @@ public class TakeMeToDestinationGreedy {
                             // so the lastStepOnDuty + 1 step, the vehicle is free.
                             if (lastStepOnDuty > 0) {
                                 vehicle.setStepToFree(lastStepOnDuty + 1);
-                                vehiclesRideMap.get(vehicle).add(ride.getIndex());
+                                vehiclesRideMap.get(vehicle).add(ride);
                                 rideList.remove(ride);
                                 break;
                             }
@@ -45,13 +45,25 @@ public class TakeMeToDestinationGreedy {
         return buildResult();
     }
 
+    public int getNotAccurateScore() {
+        int total = 0;
+
+        for (ArrayList<Ride> rides : vehiclesRideMap.values()) {
+            for (Ride ride : rides) {
+                total += ride.getEarliestStartTime();
+            }
+        }
+
+        return total;
+    }
+
     private String buildResult(){
         final StringBuilder allLines = new StringBuilder();
 
         vehiclesRideMap.forEach( (v, rides) ->{
             final StringBuilder oneLine = new StringBuilder();
             oneLine.append(rides.size() + " ");
-            rides.forEach(ride -> oneLine.append(ride + " "));
+            rides.forEach(ride -> oneLine.append(ride.getIndex() + " "));
 
             allLines.append(oneLine.toString().trim() + "\n");
         });
