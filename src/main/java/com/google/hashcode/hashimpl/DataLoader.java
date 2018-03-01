@@ -10,11 +10,12 @@ import java.util.stream.Stream;
 public class DataLoader {
     private final int row;
     private final int column;
-    private final int vechicles;
+    private final int vehicleNumber;
     private final int rides;
     private final int bonus;
     private final int simulationStep;
     private final List<Rider> riders = new ArrayList<>();
+    private final List<Vehicle> vehicles = new ArrayList<>();
 
     public DataLoader(final String path) throws Exception{
         try(final BufferedReader reader = new BufferedReader(new FileReader(path))){
@@ -23,14 +24,18 @@ public class DataLoader {
 
             row = globalData.get(0);
             column = globalData.get(1);
-            vechicles = globalData.get(2);
+            vehicleNumber = globalData.get(2);
             rides = globalData.get(3);
             bonus = globalData.get(4);
-            simulationStep = globalData.get(5);;
+            simulationStep = globalData.get(5);
 
             while((line = reader.readLine()) != null) {
                 final List<Integer> riderData = Stream.of(line.split("\\s+")).map(Integer::valueOf).collect(Collectors.toList());
                 riders.add(new Rider(riderData.get(0), riderData.get(1), riderData.get(2), riderData.get(3), riderData.get(4), riderData.get(5)));
+            }
+
+            for (int i = 0; i < vehicleNumber; i++) {
+                vehicles.add(new Vehicle(0,0));
             }
         }
     }
@@ -38,7 +43,7 @@ public class DataLoader {
     @Override
     public String toString(){
         final StringBuilder sb = new StringBuilder();
-        sb.append(String.format("%d rows, %d columns, %d vehicles, %d rides, %d bonus and %d steps\n", row, column, vechicles,
+        sb.append(String.format("%d rows, %d columns, %d vehicles, %d rides, %d bonus and %d steps\n", row, column, vehicleNumber,
                 riders.size(), bonus, simulationStep));
         riders.forEach( rider -> sb.append(rider.toString() + "\n"));
         return sb.toString();
