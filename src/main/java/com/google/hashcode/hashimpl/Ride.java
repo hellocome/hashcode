@@ -7,6 +7,7 @@ public class Ride {
     private final int endY;
     private final int earliestStartTime;
     private final int latestFinish;
+    private final int getStartToEndDistance;
 
     public Ride(int startX, int startY, int endX, int endY, int earliestStartTime, int latestFinish){
         this.startX = startX;
@@ -15,6 +16,8 @@ public class Ride {
         this.endY = endY;
         this.earliestStartTime = earliestStartTime;
         this.latestFinish = latestFinish;
+
+        getStartToEndDistance = TakeMeToDestinationHelper.countSteps(startX, startY, endX, endY);
     }
 
     public int getStartX() {
@@ -39,6 +42,10 @@ public class Ride {
 
     public int getLatestFinish() {
         return latestFinish;
+    }
+
+    public int getStartToEndDistance() {
+        return getStartToEndDistance;
     }
 
     @Override
