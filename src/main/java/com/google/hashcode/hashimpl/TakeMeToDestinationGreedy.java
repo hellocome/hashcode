@@ -7,8 +7,8 @@ public class TakeMeToDestinationGreedy {
     private final List<Vehicle> vehicles;
 
     public TakeMeToDestinationGreedy(DataLoader data){
-
-        rideList = data.
+        rideList = data.getRideList();
+        vehicles = data.getVehicles();
     }
 
 
