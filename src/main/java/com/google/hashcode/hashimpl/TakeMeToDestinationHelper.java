@@ -1,5 +1,8 @@
 package com.google.hashcode.hashimpl;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+
 public class TakeMeToDestinationHelper {
     public static int countSteps(final int startX, final int startY, final int endX, final int endY){
         return Math.abs(startX - endX) + Math.abs(endY - startY);
@@ -26,5 +29,15 @@ public class TakeMeToDestinationHelper {
 
     public static boolean alreadyTooLate(final Ride r, final int currentStep) {
         return r.getLatestFinish() <= currentStep;
+    }
+
+    public static boolean resultWritter(final String result, final String fileName) {
+        try(final BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))){
+            writer.write(result);
+            return true;
+        }catch (Exception ex){
+            ex.printStackTrace();
+            return false;
+        }
     }
 }
