@@ -18,7 +18,7 @@ public class TakeMeToDestinationGreedy {
     }
 
     public String start() {
-        for (int currentStep = 0; currentStep <= simulationStep; currentStep++) {
+        for (int currentStep = 0; currentStep <= simulationStep && rideList.size() > 0; currentStep++) {
             for (Vehicle vehicle : vehiclesRideMap.keySet()) {
                 if (!vehicle.isVehicleOnDuty(currentStep)) {
                     for (Ride ride : rideList) {
