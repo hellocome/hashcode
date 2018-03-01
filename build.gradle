@@ -1,0 +1,28 @@
+group 'com.google'
+version '1.0.0'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+targetCompatibility = sourceCompatibility
+
+idea {
+    project {
+        languageLevel = '1.8'
+        vcs = 'Git'
+    }
+}
+
+repositories {
+    
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+task copyToLib(type: Copy){
+    into "$buildDir/output/lib"
+    from configurations.runtime
+}
