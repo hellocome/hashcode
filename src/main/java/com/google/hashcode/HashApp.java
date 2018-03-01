@@ -4,6 +4,10 @@ import com.google.hashcode.hashimpl.DataLoader;
 import com.google.hashcode.hashimpl.TakeMeToDestinationGreedy;
 import com.google.hashcode.hashimpl.TakeMeToDestinationHelper;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
 public class HashApp {
     public static final String HASHCODE_FILE = "com.google.hashcode.file";
 
@@ -17,11 +21,28 @@ public class HashApp {
             System.setProperty(HASHCODE_FILE, "E:\\SourceControl\\MyGitHub\\hashcode\\DataSet\\d_metropolis.in");
             //System.setProperty(HASHCODE_FILE, "E:\\SourceControl\\MyGitHub\\hashcode\\DataSet\\a_example.in");
 
-            for(int i=0; i<100; i++) {
-                DataLoader loader = new DataLoader(System.getProperty(HASHCODE_FILE));
-                TakeMeToDestinationGreedy greedy = new TakeMeToDestinationGreedy(loader);
-                TakeMeToDestinationHelper.resultWritter(greedy.start(), result + "_" + greedy.getNotAccurateScore() + ".txt");
+            ExecutorService taskExecutor = Executors.newFixedThreadPool(100);
+            int i =0;
+            while(i++<100) {
+                taskExecutor.execute(() -> {
+
+                    try {
+                        DataLoader loader = new DataLoader(System.getProperty(HASHCODE_FILE));
+                        TakeMeToDestinationGreedy greedy = new TakeMeToDestinationGreedy(loader);
+                        TakeMeToDestinationHelper.resultWritter(greedy.start(), result + "_" + greedy.getNotAccurateScore() + ".txt");
+                    }catch (Exception ex){
+                        ex.printStackTrace();
+                    }
+                });
             }
+            taskExecutor.shutdown();
+
+            try {
+                taskExecutor.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
+            } catch (InterruptedException e) {
+
+            }
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }

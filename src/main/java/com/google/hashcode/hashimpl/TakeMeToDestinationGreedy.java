@@ -54,7 +54,7 @@ public class TakeMeToDestinationGreedy {
 
         for (ArrayList<Ride> rides : vehiclesRideMap.values()) {
             for (Ride ride : rides) {
-                total += ride.getEarliestStartTime();
+                total += ride.getStartToEndDistance();
             }
         }
 
