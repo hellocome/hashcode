@@ -48,4 +48,36 @@ public class DataLoader {
         rideList.forEach( rider -> sb.append(rider.toString() + "\n"));
         return sb.toString();
     }
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getColumn() {
+        return column;
+    }
+
+    public int getVehicleNumber() {
+        return vehicleNumber;
+    }
+
+    public int getRides() {
+        return rides;
+    }
+
+    public int getBonus() {
+        return bonus;
+    }
+
+    public int getSimulationStep() {
+        return simulationStep;
+    }
+
+    public List<Ride> getRideList() {
+        return rideList;
+    }
+
+    public List<Vehicle> getVehicles() {
+        return vehicles;
+    }
 }
