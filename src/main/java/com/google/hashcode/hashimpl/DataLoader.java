@@ -22,11 +22,11 @@ public class DataLoader {
             String line;
 
             row = globalData.get(0);
-            column = globalData.get(0);
-            vechicles = globalData.get(0);
-            rides = globalData.get(0);
-            bonus = globalData.get(0);
-            simulationStep = globalData.get(0);;
+            column = globalData.get(1);
+            vechicles = globalData.get(2);
+            rides = globalData.get(3);
+            bonus = globalData.get(4);
+            simulationStep = globalData.get(5);;
 
             while((line = reader.readLine()) != null) {
                 final List<Integer> riderData = Stream.of(line.split("\\s+")).map(Integer::valueOf).collect(Collectors.toList());
@@ -39,7 +39,7 @@ public class DataLoader {
     public String toString(){
         final StringBuilder sb = new StringBuilder();
         sb.append(String.format("%d rows, %d columns, %d vehicles, %d rides, %d bonus and %d steps\n", row, column, vechicles,
-                riders, bonus, simulationStep));
+                riders.size(), bonus, simulationStep));
         riders.forEach( rider -> sb.append(rider.toString() + "\n"));
         return sb.toString();
     }
