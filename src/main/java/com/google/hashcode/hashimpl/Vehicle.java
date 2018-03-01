@@ -3,10 +3,12 @@ package com.google.hashcode.hashimpl;
 public class Vehicle {
     private int x;
     private int y;
+    private boolean onDuty;
 
     public Vehicle(int x, int y) {
         this.x = x;
         this.y = y;
+        onDuty = false;
     }
 
     public int getX() {
@@ -23,5 +25,13 @@ public class Vehicle {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public boolean getOnDuty() {
+        return onDuty;
+    }
+
+    public void setOnDuty(boolean y) {
+        this.onDuty = onDuty;
     }
 }
