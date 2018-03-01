@@ -25,16 +25,20 @@ public class HashApp {
             int i =0;
             while(i++<100) {
                 taskExecutor.execute(() -> {
-
                     try {
                         DataLoader loader = new DataLoader(System.getProperty(HASHCODE_FILE));
                         TakeMeToDestinationGreedy greedy = new TakeMeToDestinationGreedy(loader);
-                        TakeMeToDestinationHelper.resultWritter(greedy.start(), result + "_" + greedy.getNotAccurateScore() + ".txt");
-                    }catch (Exception ex){
+                        String res = greedy.start();
+
+                        String fileName = result + "_" + greedy.getNotAccurateScore() + ".txt";
+                        TakeMeToDestinationHelper.resultWritter(res, fileName);
+                        System.out.println("ok " + fileName);
+                    } catch (Exception ex) {
                         ex.printStackTrace();
                     }
                 });
             }
+
             taskExecutor.shutdown();
 
             try {
