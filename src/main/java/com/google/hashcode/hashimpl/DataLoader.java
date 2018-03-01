@@ -14,7 +14,7 @@ public class DataLoader {
     private final int rides;
     private final int bonus;
     private final int simulationStep;
-    private final List<Rider> rideList = new ArrayList<>();
+    private final List<Ride> rideList = new ArrayList<>();
     private final List<Vehicle> vehicles = new ArrayList<>();
 
     public DataLoader(final String path) throws Exception{
@@ -31,7 +31,7 @@ public class DataLoader {
 
             while((line = reader.readLine()) != null) {
                 final List<Integer> riderData = Stream.of(line.split("\\s+")).map(Integer::valueOf).collect(Collectors.toList());
-                rideList.add(new Rider(riderData.get(0), riderData.get(1), riderData.get(2), riderData.get(3), riderData.get(4), riderData.get(5)));
+                rideList.add(new Ride(riderData.get(0), riderData.get(1), riderData.get(2), riderData.get(3), riderData.get(4), riderData.get(5)));
             }
 
             for (int i = 0; i < vehicleNumber; i++) {

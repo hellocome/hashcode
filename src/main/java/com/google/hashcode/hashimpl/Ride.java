@@ -1,6 +1,6 @@
 package com.google.hashcode.hashimpl;
 
-public class Rider {
+public class Ride {
     private final int startX;
     private final int startY;
     private final int endX;
@@ -8,7 +8,7 @@ public class Rider {
     private final int earliestStartTime;
     private final int latestFinish;
 
-    public Rider(int startX, int startY, int endX, int endY, int earliestStartTime, int latestFinish){
+    public Ride(int startX, int startY, int endX, int endY, int earliestStartTime, int latestFinish){
         this.startX = startX;
         this.startY = startY;
         this.endX = endX;
