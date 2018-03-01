@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -36,7 +37,7 @@ public class DataLoader {
                 rideList.add(new Ride(index++, riderData.get(0), riderData.get(1), riderData.get(2), riderData.get(3), riderData.get(4), riderData.get(5)));
             }
 
-            Collections.shuffle(rideList);
+            Collections.shuffle(rideList, new Random(System.currentTimeMillis()));
 
             for (int i = 0; i < vehicleNumber; i++) {
                 vehicles.add(new Vehicle(0,0));
