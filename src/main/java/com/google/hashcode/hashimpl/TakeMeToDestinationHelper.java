@@ -9,7 +9,8 @@ public class TakeMeToDestinationHelper {
         return Math.abs(v.getX() - r.getStartX()) + Math.abs(v.getY() - r.getStartY());
     }
 
-    public static boolean canArriveOnTime(final Vehicle v, final Ride r, final int currentStep, final int simulationStep){
+    // if can arrive on time, we just return the time when the vehicle is free otherwise return 0
+    public static int canArriveOnTime(final Vehicle v, final Ride r, final int currentStep, final int simulationStep){
         final int vToRSteps = countSteps(v, r);
         final int waitToStart = r.getEarliestStartTime() > (currentStep + vToRSteps) ?
                 r.getEarliestStartTime() - (currentStep + vToRSteps) : 0;
@@ -17,10 +18,10 @@ public class TakeMeToDestinationHelper {
         final int willBeArrive = currentStep + vToRSteps + waitToStart + r.getStartToEndDistance();
 
         if(willBeArrive > r.getLatestFinish()){
-            return false;
+            return 0;
         }
 
-        return true;
+        return willBeArrive;
     }
 
     public static boolean alreadyTooLate(final Ride r, final int currentStep) {

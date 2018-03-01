@@ -17,19 +17,19 @@ public class TakeMeToDestinationGreedy {
         simulationStep = data.getSimulationStep();
     }
 
-
     public void start() {
         for (int currentStep = 0; currentStep <= simulationStep; currentStep++) {
             for (Vehicle vehicle : vehiclesRideMap.keySet()) {
-                if (!vehicle.getOnDuty()) {
+                if (!vehicle.isVehicleOnDuty(currentStep)) {
                     for (Ride ride : rideList) {
                         // It's already too late, we should remove it from the list and do nothing
                         // process next ride.
                         if (TakeMeToDestinationHelper.alreadyTooLate(ride, currentStep)) {
                             rideList.remove(ride);
                         } else {
-                            if (TakeMeToDestinationHelper.canArriveOnTime(vehicle, ride, currentStep, simulationStep)) {
-                                vehicle.setOnDuty(true);
+                            final int lastStepOnDuty = TakeMeToDestinationHelper.canArriveOnTime(vehicle, ride, currentStep, simulationStep);
+                            if (lastStepOnDuty > 0) {
+                                vehicle.setStepToFree(lastStepOnDuty + 1);
                             }
                         }
                     }

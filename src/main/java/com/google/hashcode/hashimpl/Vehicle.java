@@ -4,11 +4,13 @@ public class Vehicle {
     private int x;
     private int y;
     private boolean onDuty;
+    private int stepToFree;
 
     public Vehicle(int x, int y) {
         this.x = x;
         this.y = y;
         onDuty = false;
+        stepToFree = 0;
     }
 
     public int getX() {
@@ -27,11 +29,15 @@ public class Vehicle {
         this.y = y;
     }
 
-    public boolean getOnDuty() {
-        return onDuty;
+    public boolean isVehicleOnDuty(final int currentStep) {
+        if (this.stepToFree > currentStep) {
+            return false;
+        } else {
+            return onDuty;
+        }
     }
 
-    public void setOnDuty(boolean y) {
-        this.onDuty = onDuty;
+    public void setStepToFree(int stepToFree) {
+        this.stepToFree = stepToFree;
     }
 }
